@@ -1,0 +1,22 @@
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{ "name": "apple" }
+
+####
+
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{ "name": "orange" }
+
+####
+
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{ "name": "pear" }
+
+####
+
+GET http://localhost:3000/items

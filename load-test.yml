@@ -1,0 +1,27 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - name: 'Warm-up (low load)'
+      duration: 10
+      arrivalRate: 1 # Start with 1 request per second
+    - name: 'Gradual increase'
+      duration: 10
+      arrivalRate: 5 # Increase to 5 requests per second
+    - name: 'Sustained peak load'
+      duration: 20
+      arrivalRate: 10 # Hold at 10 requests per second
+    - name: 'Traffic spike'
+      duration: 5
+      arrivalRate: 50 # Sudden spike to 50 requests per second
+    - name: 'Cool down'
+      duration: 10
+      arrivalRate: 2 # Gradually decrease to 2 requests per second
+
+scenarios:
+  - flow:
+      - post:
+          url: '/items'
+          json:
+            name: 'test-item-{{ $randomNumber(1,1000) }}'
+      - get:
+          url: '/items'
